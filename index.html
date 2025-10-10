@@ -57,7 +57,7 @@
 
     /* 카드 공통 */
     .card{
-      position:relative; display:block; overflow:hidden; border-radius:var(--card-radius);
+      position:relative; display:block; overflow:hidden; border-radius:0;
       background:#ddd center/cover no-repeat; color:#fff; text-decoration:none;
       box-shadow:0 8px 24px rgba(0,0,0,.08);
       transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
@@ -121,6 +121,29 @@
     </div>
   </header>
 
+  <!-- 중앙 문구 -->
+<section class="hero">
+  <h2>크메르어와 캄보디아의 모든 것</h2>
+  <p>
+    <a href="#about">소개</a> · 
+    <a href="#language">언어</a> · 
+    <a href="#trip">여행</a> · 
+    <a href="#food">음식</a> · 
+    <a href="#essay">항바이</a> · 
+    <a href="#contact">문의</a>
+  </p>
+</section>
+
+<!-- 사진 갤러리 -->
+<section class="gallery">
+  <a class="card square" href="#about" style="background-image:url('images/about.jpg');"></a>
+  <a class="card tall" href="#language" style="background-image:url('images/language.jpg');"></a>
+  <a class="card square" href="#trip" style="background-image:url('images/trip.jpg');"></a>
+  <a class="card wide" href="#food" style="background-image:url('images/food.jpg');"></a>
+  <a class="card square" href="#essay" style="background-image:url('images/hangbai.jpg');"></a>
+  <a class="card square" href="#contact" style="background-image:url('images/contact.jpg');"></a>
+</section>
+  
   <main class="container">
     <!-- 히어로 (선택) -->
     <section class="hero" aria-label="소개 배너">
