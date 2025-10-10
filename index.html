@@ -11,11 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --brand:#d97706;         /* 포인트 컬러 (테라코타 오렌지) */
-      --ink:#1f2937;           /* 본문 텍스트 */
-      --bg:#fdfbf7;            /* 배경 */
+      --brand:#ffffff;         /* 포인트 컬러를 흰색으로 변경 */
+      --ink:#1f2937;           /* 본문 텍스트 (진한회색/검정) */
+      --bg:#ffffff;            /* 배경도 순백색 */
       --muted:#6b7280;         /* 보조 텍스트 */
-      --card-radius:18px;      /* 카드 라운드 */
+      --card-radius:0;      /* 카드도 각지게 */
     }
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
@@ -27,7 +27,7 @@
     /* 헤더 */
     header{
       position:sticky; top:0; z-index:10;
-      background:var(--brand); color:#fff; 
+      background:#fff; color:#222; 
       box-shadow:0 2px 10px rgba(0,0,0,.08);
     }
     .header-inner{
@@ -35,7 +35,7 @@
       display:flex; align-items:center; justify-content:space-between;
     }
     .logo{ margin:0; font-size:18px; font-weight:800; letter-spacing:.3px; }
-    nav a{ color:#fff; text-decoration:none; font-weight:700; margin-left:14px; }
+    nav a{ color:#222; text-decoration:none; font-weight:700; margin-left:14px; }
     nav a:hover, nav a:focus{ text-decoration:underline; }
 
     /* 메인 그리드 래퍼 */
