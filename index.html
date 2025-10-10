@@ -56,13 +56,21 @@
       max-width:1100px;
       margin:0 auto;
     }
-    .card{
-      display:block;
-      aspect-ratio:4/3;
-      background:#ddd center/cover no-repeat;
-      border-radius:0;
-    }
-    .span-4{ grid-column: span 4; }
+    /* 기본 카드 */
+.card {
+  display:block;
+  aspect-ratio:4/3; /* 기본은 가로형 */
+  background:#ddd center/cover no-repeat;
+  border-radius:0;
+}
+
+/* 세로형 카드 */
+.card.tall {
+  aspect-ratio:3/4; /* 세로형 비율 */
+}
+
+/* span 크기 (가로 차지하는 칸 수) */
+.span-4 { grid-column: span 4; }
 
     /* 반응형 */
     @media(max-width:960px){
@@ -96,13 +104,24 @@
 
   <!-- 사진 모자이크 -->
   <section class="grid">
-    <a class="card span-4" href="about.html" style="background-image:url('images/about.jpg');"></a>
-    <a class="card span-4" href="language.html" style="background-image:url('images/language.jpg');"></a>
-    <a class="card span-4" href="trip.html" style="background-image:url('images/trip.jpg');"></a>
-    <a class="card span-4" href="food.html" style="background-image:url('images/food.jpg');"></a>
-    <a class="card span-4" href="essay.html" style="background-image:url('images/hangbai.jpg');"></a>
-    <a class="card span-4" href="contact.html" style="background-image:url('images/contact.jpg');"></a>
-  </section>
+  <!-- 5번 Food (세로형) -->
+  <a class="card span-4 tall" href="#food" style="background-image:url('images/food.jpg');"></a>
+
+  <!-- 3번 Trip (세로형) -->
+  <a class="card span-4 tall" href="#trip" style="background-image:url('images/trip.jpg');"></a>
+
+  <!-- 2번 Language (가로형) -->
+  <a class="card span-4" href="#language" style="background-image:url('images/language.jpg');"></a>
+
+  <!-- 6번 Contact (가로형) -->
+  <a class="card span-4" href="#contact" style="background-image:url('images/contact.jpg');"></a>
+
+  <!-- 1번 Hangbai (가로형) -->
+  <a class="card span-4" href="#essay" style="background-image:url('images/hangbai.jpg');"></a>
+
+  <!-- 4번 About (가로형) -->
+  <a class="card span-4" href="#about" style="background-image:url('images/about.jpg');"></a>
+</section>
 
   <footer>
     © 2025 Kim Yeo-jin | Made with GitHub Pages
