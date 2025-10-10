@@ -3,76 +3,114 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="김여진 | 크메르어 번역·통역, 캄보디아 음식·여행, 에세이 ‘항바이’ 소개" />
   <title>김여진 | 크메르어 & 캄보디아 이야기</title>
+  <!-- 웹 폰트 (선택) : 네트워크 없이도 기본 시스템 폰트로 자동 폴백됩니다. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* ============ 기본 설정(아주 기초) ============ */
     :root{
-      --brand:#d97706;   /* 포인트 색 (원하면 나중에 바꿔도 OK) */
-      --bg:#fdfbf7;      /* 배경색 */
-      --text:#222;       /* 본문 텍스트 색 */
+      --brand:#d97706;         /* 포인트 컬러 (테라코타 오렌지) */
+      --ink:#1f2937;           /* 본문 텍스트 */
+      --bg:#fdfbf7;            /* 배경 */
+      --muted:#6b7280;         /* 보조 텍스트 */
+      --card-radius:18px;      /* 카드 라운드 */
     }
     *{ box-sizing:border-box; }
-    body{ margin:0; font-family: system-ui, -apple-system, 'Noto Sans KR', Arial, sans-serif; background:var(--bg); color:var(--text); }
+    html,body{ height:100%; }
+    body{
+      margin:0; font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple SD Gothic Neo", sans-serif;
+      color:var(--ink); background:var(--bg);
+    }
 
-    /* ============ 헤더(상단 바) ============ */
+    /* 헤더 */
     header{
-      background:var(--brand);
-      color:#fff;
-      padding:16px 20px;
+      position:sticky; top:0; z-index:10;
+      background:var(--brand); color:#fff; 
+      box-shadow:0 2px 10px rgba(0,0,0,.08);
     }
-    header .inner{
-      max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between;
+    .header-inner{
+      max-width:1100px; margin:0 auto; padding:14px 16px; 
+      display:flex; align-items:center; justify-content:space-between;
     }
-    .site-title{ margin:0; font-size:18px; font-weight:700; }
-    nav a{
-      color:#fff; text-decoration:none; font-weight:700; margin-left:14px;
-    }
+    .logo{ margin:0; font-size:18px; font-weight:800; letter-spacing:.3px; }
+    nav a{ color:#fff; text-decoration:none; font-weight:700; margin-left:14px; }
     nav a:hover, nav a:focus{ text-decoration:underline; }
 
-    /* ============ 메인 그리드(핵심) ============ */
+    /* 메인 그리드 래퍼 */
+    .container{ max-width:1100px; margin:24px auto; padding:0 16px; }
+
+    /* 영웅 문구(선택) - 필요 없으면 삭제해도 됩니다 */
+    .hero{ 
+      padding:24px 0 6px; text-align:left; 
+    }
+    .hero h1{ margin:0 0 6px; font-size:28px; color:#b45309; }
+    .hero p{ margin:0; color:var(--muted); }
+
+    /* 그리드 */
     .grid{
-      max-width:1100px; margin:24px auto; padding:16px;
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 화면폭에 맞게 자동 칼럼 */
-      gap:14px;
+      display:grid; gap:16px; 
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 1fr; /* 안전한 기본값 */
     }
+
+    /* 카드 공통 */
     .card{
-      position:relative;
-      display:flex; align-items:flex-end;
-      height:180px;               /* 카드 높이(모바일 기준). 필요하면 220~260px로 증가 */
-      border-radius:16px; overflow:hidden;
-      background:#fff center/cover no-repeat;
-      color:#fff; text-decoration:none;
-      box-shadow:0 6px 16px rgba(0,0,0,.06);
-      transition: transform .2s ease, box-shadow .2s ease;
+      position:relative; display:block; overflow:hidden; border-radius:var(--card-radius);
+      background:#ddd center/cover no-repeat; color:#fff; text-decoration:none;
+      box-shadow:0 8px 24px rgba(0,0,0,.08);
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
     }
-    /* 어두운 오버레이(글자 가독성) */
+    /* 비율 유지: 최신 브라우저 지원 */
+    .card{ aspect-ratio: 4 / 3; }
+    /* 오버레이로 글자 가독성 */
     .card::before{
-      content:""; position:absolute; inset:0; background:rgba(0,0,0,.35);
-      transition:background .2s ease;
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.45) 100%);
+      transition:opacity .18s ease; opacity:.9;
     }
-    .card .title{
-      position:relative; z-index:1;
-      width:100%; padding:14px 16px;
-      font-size:18px; font-weight:800;
-      text-shadow:0 2px 6px rgba(0,0,0,.35);
-    }
-    .card:hover{ transform: translateY(-2px) scale(1.01); box-shadow:0 10px 22px rgba(0,0,0,.10); }
-    .card:hover::before{ background:rgba(0,0,0,.28); }
+    .card:hover{ transform: translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.12); }
+    .card:hover::before{ opacity:.85; }
     .card:focus-visible{ outline:3px solid #fff; outline-offset:-3px; }
 
-    /* ============ 섹션 (앵커로 이동될 곳) ============ */
-    section{ max-width:800px; margin:60px auto; padding:0 16px; line-height:1.7; }
+    /* 카드 안 글자 */
+    .card .content{ position:absolute; inset:auto 12px 12px 12px; z-index:1; }
+    .eyebrow{ display:inline-block; padding:4px 8px; font-size:12px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; background:rgba(0,0,0,.35); border-radius:999px; }
+    .title{ display:block; margin-top:8px; font-size:20px; font-weight:800; text-shadow:0 2px 8px rgba(0,0,0,.45); }
+
+    /* 모자이크 느낌을 위한 크기 가변 카드 */
+    .span-6{ grid-column: span 6; }
+    .span-4{ grid-column: span 4; }
+    .span-3{ grid-column: span 3; }
+    .span-8{ grid-column: span 8; }
+
+    /* 반응형 */
+    @media (max-width: 960px){
+      .span-8{ grid-column: span 6; }
+      .span-6{ grid-column: span 6; }
+      .span-4{ grid-column: span 6; }
+      .span-3{ grid-column: span 6; }
+    }
+    @media (max-width: 640px){
+      .grid{ grid-template-columns: repeat(1, 1fr); }
+      .span-8, .span-6, .span-4, .span-3{ grid-column: span 1; }
+      .card{ aspect-ratio: 16 / 10; }
+      .hero h1{ font-size:22px; }
+    }
+
+    /* 섹션 (앵커 이동 대상) */
+    section{ max-width:800px; margin:64px auto; padding:0 16px; line-height:1.8; }
     section h2{ margin:0 0 10px; color:#b45309; }
-    footer{ text-align:center; padding:24px; color:#666; background:#f4f4f4; margin-top:60px; }
+    footer{ text-align:center; padding:28px 16px; color:#666; background:#f4f4f4; margin-top:72px; }
   </style>
 </head>
 <body>
-  <!-- 상단 헤더 -->
+  <!-- 헤더 -->
   <header>
-    <div class="inner">
-      <h1 class="site-title">김여진 | Khmer Language & Cambodian Cuisine</h1>
-      <nav>
+    <div class="header-inner">
+      <h1 class="logo">김여진 | Khmer Language & Cambodian Cuisine</h1>
+      <nav aria-label="주요 메뉴">
         <a href="#language">언어서비스</a>
         <a href="#trip">캄보디아 여행</a>
         <a href="#food">캄보디아 음식</a>
@@ -83,68 +121,97 @@
     </div>
   </header>
 
-  <!-- 첫 화면: 그리드 카드 (여기만 봐도 사이트 방향이 보이게) -->
-  <main class="grid">
-    <!-- 각 카드: 이미지 + 제목 + 링크(해당 섹션으로 이동) -->
-    <a class="card" href="#language" style="background-image:url('images/translation.jpg');">
-      <span class="title">번역 & 검수</span>
-    </a>
+  <main class="container">
+    <!-- 히어로 (선택) -->
+    <section class="hero" aria-label="소개 배너">
+      <h1>크메르어와 캄보디아의 모든 것</h1>
+      <p>번역 · 통역 · 음식 · 여행 · 에세이 <strong>‘항바이’</strong></p>
+    </section>
 
-    <a class="card" href="#language" style="background-image:url('images/interpreting.jpg');">
-      <span class="title">통역 서비스</span>
-    </a>
+    <!-- 그리드: Wix 느낌의 모자이크 (데스크톱 기준 12칸) -->
+    <section class="grid" aria-label="메인 그리드">
+      <!-- 큰 카드(가로 넓게) -->
+      <a class="card span-8" href="#language" style="background-image:url('images/translation.jpg');">
+        <span class="content">
+          <span class="eyebrow">TRANSLATION</span>
+          <span class="title">번역 & 검수</span>
+        </span>
+      </a>
 
-    <a class="card" href="#food" style="background-image:url('images/food.jpg');">
-      <span class="title">캄보디아 음식</span>
-    </a>
+      <!-- 정사각 카드 -->
+      <a class="card span-4" href="#food" style="background-image:url('images/food.jpg');">
+        <span class="content">
+          <span class="eyebrow">FOOD</span>
+          <span class="title">캄보디아 음식</span>
+        </span>
+      </a>
 
-    <a class="card" href="#trip" style="background-image:url('images/trip.jpg');">
-      <span class="title">캄보디아 여행</span>
-    </a>
+      <!-- 정사각 카드 -->
+      <a class="card span-4" href="#trip" style="background-image:url('images/trip.jpg');">
+        <span class="content">
+          <span class="eyebrow">TRAVEL</span>
+          <span class="title">캄보디아 여행</span>
+        </span>
+      </a>
 
-    <a class="card" href="#essay" style="background-image:url('images/hangbai.jpg');">
-      <span class="title">항바이 (요리 에세이)</span>
-    </a>
+      <!-- 정사각 카드 -->
+      <a class="card span-4" href="#language" style="background-image:url('images/interpreting.jpg');">
+        <span class="content">
+          <span class="eyebrow">INTERPRETING</span>
+          <span class="title">통역 서비스</span>
+        </span>
+      </a>
 
-    <a class="card" href="#about" style="background-image:url('images/about.jpg');">
-      <span class="title">소개</span>
-    </a>
+      <!-- 정사각 카드 -->
+      <a class="card span-4" href="#essay" style="background-image:url('images/hangbai.jpg');">
+        <span class="content">
+          <span class="eyebrow">ESSAY</span>
+          <span class="title">항바이</span>
+        </span>
+      </a>
 
-    <a class="card" href="#contact" style="background-image:url('images/contact.jpg');">
-      <span class="title">문의하기</span>
-    </a>
+      <!-- 정사각 카드 -->
+      <a class="card span-4" href="#about" style="background-image:url('images/about.jpg');">
+        <span class="content">
+          <span class="eyebrow">ABOUT</span>
+          <span class="title">소개</span>
+        </span>
+      </a>
+
+      <!-- 정사각 카드 -->
+      <a class="card span-4" href="#contact" style="background-image:url('images/contact.jpg');">
+        <span class="content">
+          <span class="eyebrow">CONTACT</span>
+          <span class="title">문의하기</span>
+        </span>
+      </a>
+    </section>
   </main>
 
-  <!-- 아래부터는 앵커가 가리키는 섹션들(간단히만) -->
+  <!-- 아래는 앵커 대상 섹션들 (간단 예시) -->
   <section id="language">
     <h2>언어서비스</h2>
-    <p>문서 번역/검수(한↔크), 맞춤형 크메르어 교육, 현장 통역(협의) 등을 제공합니다.</p>
+    <p>문서 번역·검수(한↔크), 맞춤형 크메르어 교육, 현장 통역(협의) 제공.</p>
   </section>
-
   <section id="trip">
     <h2>캄보디아 여행</h2>
     <p>관광지뿐 아니라 다양한 지역의 일상과 풍경을 기록합니다.</p>
   </section>
-
   <section id="food">
     <h2>캄보디아 음식</h2>
     <p>전통 요리, 스트릿푸드, 디저트. 한국에서 즐길 수 있는 케이터링도 진행합니다.</p>
   </section>
-
   <section id="essay">
     <h2>항바이</h2>
     <p>캄보디아에서 경험한 음식과 추억을 기록한 요리 에세이(출간 준비 중).</p>
   </section>
-
   <section id="about">
     <h2>소개</h2>
     <p>크메르어 통번역/강의와 캄보디아 음식 케이터링으로 현지의 맛과 문화를 소개합니다.</p>
   </section>
-
   <section id="contact">
     <h2>문의</h2>
-    <p>📧 이메일: ssreykmav@email.com<br>
-       📱 카카오톡: kong2mo</p>
+    <p>📧 이메일: ssreykmav@email.com<br>📱 카카오톡: kong2mo</p>
   </section>
 
   <footer>
