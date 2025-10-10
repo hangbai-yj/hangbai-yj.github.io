@@ -13,7 +13,6 @@
       --ink:#1f2937;
       --bg:#ffffff;
       --muted:#6b7280;
-      --card-radius:0;
     }
     *{ box-sizing:border-box; }
     body{
@@ -21,109 +20,149 @@
       color:var(--ink); background:var(--bg);
     }
 
-    /* Hero */
-    .hero{
-      text-align:center;
-      padding:60px 20px 30px;
+    /* 왼쪽 상단 제목 */
+    .header-left {
+      position:fixed;
+      top:20px; left:20px;
+      text-align:left;
+      z-index:100;
     }
-    .hero h1{
-      font-size:42px;
+    .header-left h1 {
+      font-size:28px;
       font-weight:700;
       margin:0;
       color:#222;
     }
-    .hero .subtitle{
-      font-size:20px;
+    .header-left .subtitle {
+      font-size:16px;
       font-weight:400;
-      margin:8px 0 20px;
+      margin-top:4px;
       color:#555;
       font-family:'Noto Sans KR','Hanuman',sans-serif;
     }
-    .hero .main-nav a{
-      font-size:16px;
-      color:#444;
+
+    /* 오른쪽 상단 메뉴 */
+    .menu {
+      position:fixed;
+      top:20px; right:20px;
+      z-index:100;
+    }
+    .menu a {
+      color:#222;
       text-decoration:none;
-      margin:0 8px;
+      margin-left:14px;
+      font-weight:600;
+      font-size:15px;
     }
-    .hero .main-nav a:hover{ text-decoration:underline; }
+    .menu a:hover { text-decoration:underline; }
 
-    /* 사진 그리드 */
-    .grid{
+    /* 사진 갤러리 */
+    .gallery {
       display:grid;
+      grid-template-columns: repeat(12, 1fr); /* 가로 12칸 */
       gap:16px;
-      grid-template-columns: repeat(12, 1fr);
-      padding:20px;
-      max-width:1100px;
-      margin:0 auto;
+      padding:80px 40px; /* 위에 제목/메뉴 피해서 여백 줌 */
     }
-   /* 기본 카드 */
-.card {
-  display:block;
-  aspect-ratio:4/3; /* 기본 비율은 가로형 */
-  background:#ddd center/cover no-repeat;
-  border-radius:0;
-}
 
-/* 세로형 카드 */
-.card.tall {
-  aspect-ratio:3/4; /* 세로형 비율 */
-}
+    .card {
+      display:block;
+      background:#ddd center/cover no-repeat;
+      border-radius:0;
+    }
 
-/* span 크기 (가로 칸 차지 비율 조절) */
-.span-3 { grid-column: span 3; }  /* 좁게: 12칸 중 3칸 */
-.span-4 { grid-column: span 4; }  /* 기본: 12칸 중 4칸 */
-.span-6 { grid-column: span 6; }  /* 넓게: 12칸 중 절반 */
+    /* 크기 비율 */
+    .card.tall { aspect-ratio: 3 / 4; }
+    .card.wide { aspect-ratio: 16 / 9; }
 
     /* 반응형 */
     @media(max-width:960px){
-      .span-4{ grid-column: span 6; }
+      .gallery { grid-template-columns: repeat(6, 1fr); }
     }
     @media(max-width:640px){
-      .span-4{ grid-column: span 12; }
+      .gallery { grid-template-columns: repeat(1, 1fr); }
       .card{ aspect-ratio:16/10; }
     }
 
     footer{
-      text-align:center; padding:28px 16px; color:#666; background:#f4f4f4; margin-top:72px;
+      text-align:center; padding:28px 16px;
+      color:#666; background:#f4f4f4;
+      margin-top:72px;
+    }
+
+    /* 디버그용 가이드라인 (원할 때만 켜기) */
+    .gallery.debug {
+      background: repeating-linear-gradient(
+        to right,
+        rgba(0,0,0,0.05) 0,
+        rgba(0,0,0,0.05) 1px,
+        transparent 1px,
+        transparent calc(100% / 12)
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.05) 0,
+        rgba(0,0,0,0.05) 1px,
+        transparent 1px,
+        transparent 200px
+      );
     }
   </style>
 </head>
 <body>
-
-  <!-- Hero -->
-  <section class="hero">
+  <!-- 왼쪽 상단 제목 -->
+  <div class="header-left">
     <h1>PEACEFULL CAMBODIA</h1>
-    <h2 class="subtitle">កម្ពុជាសន្តិភាព</h2>
-    <nav class="main-nav">
-      <a href="about.html">About</a> · 
-      <a href="language.html">Language</a> · 
-      <a href="trip.html">Trip</a> · 
-      <a href="food.html">Food</a> · 
-      <a href="essay.html">Essay</a> · 
-      <a href="contact.html">Contact</a>
-    </nav>
+    <div class="subtitle">កម្ពុជាសន្តិភាព</div>
+  </div>
+
+  <!-- 오른쪽 상단 메뉴 -->
+  <div class="menu">
+    <a href="about.html">About</a>
+    <a href="language.html">Language</a>
+    <a href="trip.html">Trip</a>
+    <a href="food.html">Food</a>
+    <a href="essay.html">Essay</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- 사진 갤러리 -->
+  <section class="gallery">
+    <!-- 1번 Hangbai -->
+    <a class="card tall" href="essay.html" 
+       style="background-image:url('images/hangbai.jpg');
+              grid-column: 1 / span 4;
+              grid-row: 1 / span 2;"></a>
+
+    <!-- 2번 Language -->
+    <a class="card tall" href="language.html" 
+       style="background-image:url('images/language.jpg');
+              grid-column: 9 / span 4;
+              grid-row: 1 / span 2;"></a>
+
+    <!-- 3번 Trip -->
+    <a class="card wide" href="trip.html" 
+       style="background-image:url('images/trip.jpg');
+              grid-column: 5 / span 8;
+              grid-row: 1 / span 1;"></a>
+
+    <!-- 4번 About -->
+    <a class="card wide" href="about.html" 
+       style="background-image:url('images/about.jpg');
+              grid-column: 1 / span 6;
+              grid-row: 3 / span 1;"></a>
+
+    <!-- 5번 Food -->
+    <a class="card tall" href="food.html" 
+       style="background-image:url('images/food.jpg');
+              grid-column: 7 / span 3;
+              grid-row: 3 / span 2;"></a>
+
+    <!-- 6번 Contact -->
+    <a class="card tall" href="contact.html" 
+       style="background-image:url('images/contact.jpg');
+              grid-column: 10 / span 3;
+              grid-row: 3 / span 2;"></a>
   </section>
-
-  <!-- 사진 모자이크 -->
-  <section class="grid">
-  <!-- 1번 Hangbai (세로형) -->
-  <a class="card span-3 tall" href="#essay" style="background-image:url('images/hangbai.jpg');"></a>
-
-  <!-- 3번 Trip (가로형) -->
-  <a class="card span-6" href="#trip" style="background-image:url('images/trip.jpg');"></a>
-
-  <!-- 2번 Language (세로형) -->
-  <a class="card span-3 tall" href="#language" style="background-image:url('images/language.jpg');"></a>
-    
-  <!-- 6번 Contact (세로형) -->
-  <a class="card span-3 tall" href="#contact" style="background-image:url('images/contact.jpg');"></a>  
-
-  <!-- 4번 About (가로형) -->
-  <a class="card span-6" href="#about" style="background-image:url('images/about.jpg');"></a>
-    
-  <!-- 5번 Food (세로형) -->
-  <a class="card span-3 tall" href="#food" style="background-image:url('images/food.jpg');"></a>
-</section>
 
   <footer>
     © 2025 Kim Yeo-jin | Made with GitHub Pages
