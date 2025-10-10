@@ -3,180 +3,105 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="김여진 | 크메르어 강의·번역·통역, 캄보디아 음식·여행" />
-  <title>김여진 | 크메르어 & 캄보디아 이야기</title>
-  <!-- 웹 폰트 (선택) : 네트워크 없이도 기본 시스템 폰트로 자동 폴백됩니다. -->
+  <meta name="description" content="PEACEFULL CAMBODIA | Khmer Language & Cambodian Culture" />
+  <title>PEACEFULL CAMBODIA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --brand:#ffffff;         /* 포인트 컬러를 흰색으로 변경 */
-      --ink:#1f2937;           /* 본문 텍스트 (진한회색/검정) */
-      --bg:#ffffff;            /* 배경도 순백색 */
-      --muted:#6b7280;         /* 보조 텍스트 */
-      --card-radius:0;      /* 카드도 각지게 */
+      --ink:#1f2937;
+      --bg:#ffffff;
+      --muted:#6b7280;
+      --card-radius:0;
     }
     *{ box-sizing:border-box; }
-    html,body{ height:100%; }
     body{
-      margin:0; font-family: 'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple SD Gothic Neo", sans-serif;
+      margin:0; font-family:'Noto Sans KR', system-ui, sans-serif;
       color:var(--ink); background:var(--bg);
     }
 
-    /* 헤더 */
-    header{
-      position:sticky; top:0; z-index:10;
-      background:#fff; color:#222; 
-      box-shadow:0 2px 10px rgba(0,0,0,.08);
+    /* Hero */
+    .hero{
+      text-align:center;
+      padding:60px 20px 30px;
     }
-    .header-inner{
-      max-width:1100px; margin:0 auto; padding:14px 16px; 
-      display:flex; align-items:center; justify-content:space-between;
+    .hero h1{
+      font-size:42px;
+      font-weight:700;
+      margin:0;
+      color:#222;
     }
-    .logo{ margin:0; font-size:18px; font-weight:800; letter-spacing:.3px; }
-    nav a{ color:#222; text-decoration:none; font-weight:700; margin-left:14px; }
-    nav a:hover, nav a:focus{ text-decoration:underline; }
-
-    /* 메인 그리드 래퍼 */
-    .container{ max-width:1100px; margin:24px auto; padding:0 16px; }
-
-    /* 영웅 문구(선택) - 필요 없으면 삭제해도 됩니다 */
-    .hero{ 
-      padding:24px 0 6px; text-align:left; 
+    .hero .subtitle{
+      font-size:20px;
+      font-weight:400;
+      margin:8px 0 20px;
+      color:#555;
+      font-family:'Noto Sans KR','Hanuman',sans-serif;
     }
-    .hero h1{ margin:0 0 6px; font-size:28px; color:#b45309; }
-    .hero p{ margin:0; color:var(--muted); }
+    .hero .main-nav a{
+      font-size:16px;
+      color:#444;
+      text-decoration:none;
+      margin:0 8px;
+    }
+    .hero .main-nav a:hover{ text-decoration:underline; }
 
-    /* 그리드 */
+    /* 사진 그리드 */
     .grid{
-      display:grid; gap:16px; 
+      display:grid;
+      gap:16px;
       grid-template-columns: repeat(12, 1fr);
-      grid-auto-rows: 1fr; /* 안전한 기본값 */
+      padding:20px;
+      max-width:1100px;
+      margin:0 auto;
     }
-
-    /* 카드 공통 */
     .card{
-      position:relative; display:block; overflow:hidden; border-radius:0;
-      background:#ddd center/cover no-repeat; color:#fff; text-decoration:none;
-      box-shadow:0 8px 24px rgba(0,0,0,.08);
-      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      display:block;
+      aspect-ratio:4/3;
+      background:#ddd center/cover no-repeat;
+      border-radius:0;
     }
-    /* 비율 유지: 최신 브라우저 지원 */
-    .card{ aspect-ratio: 4 / 3; }
-    /* 오버레이로 글자 가독성 */
-    .card::before{
-      content:""; position:absolute; inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.45) 100%);
-      transition:opacity .18s ease; opacity:.9;
-    }
-    .card:hover{ transform: translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,.12); }
-    .card:hover::before{ opacity:.85; }
-    .card:focus-visible{ outline:3px solid #fff; outline-offset:-3px; }
-
-    /* 카드 안 글자 */
-    .card .content{ position:absolute; inset:auto 12px 12px 12px; z-index:1; }
-    .eyebrow{ display:inline-block; padding:4px 8px; font-size:12px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; background:rgba(0,0,0,.35); border-radius:999px; }
-    .title{ display:block; margin-top:8px; font-size:20px; font-weight:800; text-shadow:0 2px 8px rgba(0,0,0,.45); }
-
-    /* 모자이크 느낌을 위한 크기 가변 카드 */
-    .span-6{ grid-column: span 6; }
     .span-4{ grid-column: span 4; }
-    .span-3{ grid-column: span 3; }
-    .span-8{ grid-column: span 8; }
 
     /* 반응형 */
-    @media (max-width: 960px){
-      .span-8{ grid-column: span 6; }
-      .span-6{ grid-column: span 6; }
+    @media(max-width:960px){
       .span-4{ grid-column: span 6; }
-      .span-3{ grid-column: span 6; }
     }
-    @media (max-width: 640px){
-      .grid{ grid-template-columns: repeat(1, 1fr); }
-      .span-8, .span-6, .span-4, .span-3{ grid-column: span 1; }
-      .card{ aspect-ratio: 16 / 10; }
-      .hero h1{ font-size:22px; }
+    @media(max-width:640px){
+      .span-4{ grid-column: span 12; }
+      .card{ aspect-ratio:16/10; }
     }
 
-    /* 섹션 (앵커 이동 대상) */
-    section{ max-width:800px; margin:64px auto; padding:0 16px; line-height:1.8; }
-    section h2{ margin:0 0 10px; color:#b45309; }
-    footer{ text-align:center; padding:28px 16px; color:#666; background:#f4f4f4; margin-top:72px; }
+    footer{
+      text-align:center; padding:28px 16px; color:#666; background:#f4f4f4; margin-top:72px;
+    }
   </style>
 </head>
 <body>
-  <!-- 헤더 -->
-  <header>
-    <div class="header-inner">
-      <h1 class="logo">김여진 | Khmer Language & Cambodian Cuisine</h1>
-      <nav aria-label="주요 메뉴">
-        <a href="#about">소개</a>
-        <a href="#language">언어서비스</a>
-        <a href="#trip">캄보디아 여행</a>
-        <a href="#food">캄보디아 음식</a>
-        <a href="#essay">항바이</a>
-        <a href="#contact">문의</a>
-      </nav>
-    </div>
-  </header>
 
-  <!-- 중앙 문구 -->
-<section class="hero">
-  <h2>크메르어와 캄보디아의 모든 것</h2>
-  <p>
-    <a href="#about">소개</a> · 
-    <a href="#language">언어</a> · 
-    <a href="#trip">여행</a> · 
-    <a href="#food">음식</a> · 
-    <a href="#essay">항바이</a> · 
-    <a href="#contact">문의</a>
-  </p>
-</section>
+  <!-- Hero -->
+  <section class="hero">
+    <h1>PEACEFULL CAMBODIA</h1>
+    <h2 class="subtitle">កម្ពុជាសន្តិភាព</h2>
+    <nav class="main-nav">
+      <a href="about.html">About</a> · 
+      <a href="language.html">Language</a> · 
+      <a href="trip.html">Trip</a> · 
+      <a href="food.html">Food</a> · 
+      <a href="essay.html">Essay</a> · 
+      <a href="contact.html">Contact</a>
+    </nav>
+  </section>
 
-<!-- 사진 갤러리 -->
-<section class="gallery">
-  <a class="card square" href="#about" style="background-image:url('images/about.jpg');"></a>
-  <a class="card tall" href="#language" style="background-image:url('images/language.jpg');"></a>
-  <a class="card square" href="#trip" style="background-image:url('images/trip.jpg');"></a>
-  <a class="card wide" href="#food" style="background-image:url('images/food.jpg');"></a>
-  <a class="card square" href="#essay" style="background-image:url('images/hangbai.jpg');"></a>
-  <a class="card square" href="#contact" style="background-image:url('images/contact.jpg');"></a>
-</section>
-  
-  <main class="container">
-    <!-- 히어로 (선택) -->
-    <section class="hero" aria-label="소개 배너">
-      <h1>크메르어와 캄보디아의 모든 것</h1>
-      <p>언어 · 여행 · 음식 · 항바이</p>
-    </section>
-   
-  </main>
-
-  <!-- 아래는 앵커 대상 섹션들 (간단 예시) -->
-  <section id="about">
-    <h2>소개</h2>
-    <p>크메르어 통번역/강의와 캄보디아 음식 케이터링으로 현지의 맛과 문화를 소개합니다.</p>
-  </section>
-   <section id="language">
-    <h2>언어서비스</h2>
-    <p>문서 번역·검수(한↔크), 맞춤형 크메르어 교육, 현장 통역(협의) 제공.</p>
-  </section>
-  <section id="trip">
-    <h2>캄보디아 여행</h2>
-    <p>관광지뿐 아니라 다양한 지역의 일상과 풍경을 기록합니다.</p>
-  </section>
-  <section id="food">
-    <h2>캄보디아 음식</h2>
-    <p>전통 요리, 스트릿푸드, 디저트. 한국에서 즐길 수 있는 케이터링도 진행합니다.</p>
-  </section>
-  <section id="essay">
-    <h2>항바이</h2>
-    <p>캄보디아에서 경험한 음식과 추억을 기록한 요리 에세이(출간 준비 중).</p>
-  </section>
-  <section id="contact">
-    <h2>문의</h2>
-    <p>📧 이메일: ssreykmav@email.com<br>📱 카카오톡: kong2mo</p>
+  <!-- 사진 모자이크 -->
+  <section class="grid">
+    <a class="card span-4" href="about.html" style="background-image:url('images/about.jpg');"></a>
+    <a class="card span-4" href="language.html" style="background-image:url('images/language.jpg');"></a>
+    <a class="card span-4" href="trip.html" style="background-image:url('images/trip.jpg');"></a>
+    <a class="card span-4" href="food.html" style="background-image:url('images/food.jpg');"></a>
+    <a class="card span-4" href="essay.html" style="background-image:url('images/hangbai.jpg');"></a>
+    <a class="card span-4" href="contact.html" style="background-image:url('images/contact.jpg');"></a>
   </section>
 
   <footer>
