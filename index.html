@@ -25,52 +25,67 @@
       position:fixed;
       top:20px; left:20px;
       text-align:left;
-      z-index:100;
+      z-index:200;
     }
     .header-left h1 {
-      font-size:28px;
+      font-size:32px;
       font-weight:700;
       margin:0;
       color:#222;
     }
     .header-left .subtitle {
-      font-size:16px;
-      font-weight:400;
-      margin-top:4px;
-      color:#555;
-      font-family:'Noto Sans KR','Hanuman',sans-serif;
+      font-size:32px;   /* 제목과 같은 크기 */
+      font-weight:600;  /* 약간 덜 두껍게 */
+      margin-top:6px;
+      color:#444;
+      font-family:'Hanuman','Noto Sans KR',sans-serif;
     }
 
-    /* 오른쪽 상단 메뉴 */
+    /* 햄버거 메뉴 */
     .menu {
       position:fixed;
       top:20px; right:20px;
-      z-index:100;
+      z-index:200;
     }
-    .menu a {
+    .menu-button {
+      font-size:28px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .menu-content {
+      display:none;
+      position:absolute;
+      top:40px; right:0;
+      background:#fff;
+      border:1px solid #ddd;
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+      padding:10px 20px;
+    }
+    .menu-content a {
+      display:block;
+      padding:8px 0;
       color:#222;
       text-decoration:none;
-      margin-left:14px;
-      font-weight:600;
-      font-size:15px;
     }
-    .menu a:hover { text-decoration:underline; }
+    .menu-content a:hover {
+      text-decoration:underline;
+    }
+    .menu.open .menu-content {
+      display:block;
+    }
 
     /* 사진 갤러리 */
     .gallery {
       display:grid;
-      grid-template-columns: repeat(12, 1fr); /* 가로 12칸 */
+      grid-template-columns: repeat(12, 1fr);
       gap:16px;
-      padding:80px 40px; /* 위에 제목/메뉴 피해서 여백 줌 */
+      padding:80px 40px; /* 위쪽 여백: 제목+메뉴 */
     }
-
     .card {
       display:block;
       background:#ddd center/cover no-repeat;
       border-radius:0;
     }
-
-    /* 크기 비율 */
     .card.tall { aspect-ratio: 3 / 4; }
     .card.wide { aspect-ratio: 16 / 9; }
 
@@ -84,12 +99,14 @@
     }
 
     footer{
-      text-align:center; padding:28px 16px;
-      color:#666; background:#f4f4f4;
+      text-align:center;
+      padding:28px 16px;
+      color:#666;
+      background:#f4f4f4;
       margin-top:72px;
     }
 
-    /* 디버그용 가이드라인 (원할 때만 켜기) */
+    /* (옵션) 디버그용 가이드라인 */
     .gallery.debug {
       background: repeating-linear-gradient(
         to right,
@@ -115,14 +132,17 @@
     <div class="subtitle">កម្ពុជាសន្តិភាព</div>
   </div>
 
-  <!-- 오른쪽 상단 메뉴 -->
+  <!-- 오른쪽 상단 햄버거 메뉴 -->
   <div class="menu">
-    <a href="about.html">About</a>
-    <a href="language.html">Language</a>
-    <a href="trip.html">Trip</a>
-    <a href="food.html">Food</a>
-    <a href="essay.html">Essay</a>
-    <a href="contact.html">Contact</a>
+    <div class="menu-button">☰</div>
+    <div class="menu-content">
+      <a href="about.html">About</a>
+      <a href="language.html">Language</a>
+      <a href="trip.html">Trip</a>
+      <a href="food.html">Food</a>
+      <a href="essay.html">Essay</a>
+      <a href="contact.html">Contact</a>
+    </div>
   </div>
 
   <!-- 사진 갤러리 -->
@@ -167,5 +187,17 @@
   <footer>
     © 2025 Kim Yeo-jin | Made with GitHub Pages
   </footer>
+
+  <!-- 햄버거 메뉴 JS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      const menu = document.querySelector(".menu");
+      const button = document.querySelector(".menu-button");
+
+      button.addEventListener("click", function(){
+        menu.classList.toggle("open");
+      });
+    });
+  </script>
 </body>
 </html>
