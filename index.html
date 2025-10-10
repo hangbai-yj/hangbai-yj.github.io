@@ -1,67 +1,150 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>김여진 | 크메르어 & 캄보디아 이야기</title>
   <style>
-    body { font-family: 'Noto Sans KR', sans-serif; margin: 0; background: #fdfbf7; color: #222; }
-    header { background: #d97706; color: white; padding: 1.5em; text-align: center; }
-    nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: bold; }
-    section { padding: 2em; max-width: 800px; margin: auto; }
-    h1 { color: #b45309; }
-    footer { text-align: center; padding: 1em; background: #f4f4f4; color: #555; }
+    /* ============ 기본 설정(아주 기초) ============ */
+    :root{
+      --brand:#d97706;   /* 포인트 색 (원하면 나중에 바꿔도 OK) */
+      --bg:#fdfbf7;      /* 배경색 */
+      --text:#222;       /* 본문 텍스트 색 */
+    }
+    *{ box-sizing:border-box; }
+    body{ margin:0; font-family: system-ui, -apple-system, 'Noto Sans KR', Arial, sans-serif; background:var(--bg); color:var(--text); }
+
+    /* ============ 헤더(상단 바) ============ */
+    header{
+      background:var(--brand);
+      color:#fff;
+      padding:16px 20px;
+    }
+    header .inner{
+      max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between;
+    }
+    .site-title{ margin:0; font-size:18px; font-weight:700; }
+    nav a{
+      color:#fff; text-decoration:none; font-weight:700; margin-left:14px;
+    }
+    nav a:hover, nav a:focus{ text-decoration:underline; }
+
+    /* ============ 메인 그리드(핵심) ============ */
+    .grid{
+      max-width:1100px; margin:24px auto; padding:16px;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 화면폭에 맞게 자동 칼럼 */
+      gap:14px;
+    }
+    .card{
+      position:relative;
+      display:flex; align-items:flex-end;
+      height:180px;               /* 카드 높이(모바일 기준). 필요하면 220~260px로 증가 */
+      border-radius:16px; overflow:hidden;
+      background:#fff center/cover no-repeat;
+      color:#fff; text-decoration:none;
+      box-shadow:0 6px 16px rgba(0,0,0,.06);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    /* 어두운 오버레이(글자 가독성) */
+    .card::before{
+      content:""; position:absolute; inset:0; background:rgba(0,0,0,.35);
+      transition:background .2s ease;
+    }
+    .card .title{
+      position:relative; z-index:1;
+      width:100%; padding:14px 16px;
+      font-size:18px; font-weight:800;
+      text-shadow:0 2px 6px rgba(0,0,0,.35);
+    }
+    .card:hover{ transform: translateY(-2px) scale(1.01); box-shadow:0 10px 22px rgba(0,0,0,.10); }
+    .card:hover::before{ background:rgba(0,0,0,.28); }
+    .card:focus-visible{ outline:3px solid #fff; outline-offset:-3px; }
+
+    /* ============ 섹션 (앵커로 이동될 곳) ============ */
+    section{ max-width:800px; margin:60px auto; padding:0 16px; line-height:1.7; }
+    section h2{ margin:0 0 10px; color:#b45309; }
+    footer{ text-align:center; padding:24px; color:#666; background:#f4f4f4; margin-top:60px; }
   </style>
 </head>
 <body>
+  <!-- 상단 헤더 -->
   <header>
-    <h2>김여진 | Khmer Language & Cambodian Cuisine</h2>
-    <nav>
-      <a href="#about">소개</a>
-      <a href="#language">언어서비스</a>
-      <a href="#trip">캄보디아 여행</a>
-      <a href="#food">캄보디아 음식</a>
-      <a href="#essay">에세이 항바이</a>
-      <a href="#contact">contact</a>
-    </nav>
+    <div class="inner">
+      <h1 class="site-title">김여진 | Khmer Language & Cambodian Cuisine</h1>
+      <nav>
+        <a href="#language">언어서비스</a>
+        <a href="#trip">캄보디아 여행</a>
+        <a href="#food">캄보디아 음식</a>
+        <a href="#essay">항바이</a>
+        <a href="#about">소개</a>
+        <a href="#contact">문의</a>
+      </nav>
+    </div>
   </header>
 
-  <section id="about">
-    <h1>소개</h1>
-    <p>캄보디아의 음식과 사람들을 좋아합니다.<br>
-    현재 크메르어 통번역, 검수, 강의 및 캄보디아 음식 케이터링을 하며 캄보디아를 소개합니다.</p>
-  </section>
+  <!-- 첫 화면: 그리드 카드 (여기만 봐도 사이트 방향이 보이게) -->
+  <main class="grid">
+    <!-- 각 카드: 이미지 + 제목 + 링크(해당 섹션으로 이동) -->
+    <a class="card" href="#language" style="background-image:url('images/translation.jpg');">
+      <span class="title">번역 & 검수</span>
+    </a>
 
+    <a class="card" href="#language" style="background-image:url('images/interpreting.jpg');">
+      <span class="title">통역 서비스</span>
+    </a>
+
+    <a class="card" href="#food" style="background-image:url('images/food.jpg');">
+      <span class="title">캄보디아 음식</span>
+    </a>
+
+    <a class="card" href="#trip" style="background-image:url('images/trip.jpg');">
+      <span class="title">캄보디아 여행</span>
+    </a>
+
+    <a class="card" href="#essay" style="background-image:url('images/hangbai.jpg');">
+      <span class="title">항바이 (요리 에세이)</span>
+    </a>
+
+    <a class="card" href="#about" style="background-image:url('images/about.jpg');">
+      <span class="title">소개</span>
+    </a>
+
+    <a class="card" href="#contact" style="background-image:url('images/contact.jpg');">
+      <span class="title">문의하기</span>
+    </a>
+  </main>
+
+  <!-- 아래부터는 앵커가 가리키는 섹션들(간단히만) -->
   <section id="language">
-    <h1>언어서비스</h1>
-    <p>• 문서 번역 및 검수 (한↔크메르어) <br>
-       • 맞춤형 크메르어 교육 <br>
-       • 현장 통역 (협의 후 진행)</p>
+    <h2>언어서비스</h2>
+    <p>문서 번역/검수(한↔크), 맞춤형 크메르어 교육, 현장 통역(협의) 등을 제공합니다.</p>
   </section>
 
   <section id="trip">
-    <h1>캄보디아 여행</h1>
-    <p>캄보디아 여행 사진을 공유합니다.<br>
-    캄보디아 관광지 뿐 아니라 다양한 지역의 아름다움 풍경과 사람들이 살아가는 모습을 보여줍니다. .</p>
+    <h2>캄보디아 여행</h2>
+    <p>관광지뿐 아니라 다양한 지역의 일상과 풍경을 기록합니다.</p>
   </section>
 
-<section id="food">
-    <h1>캄보디아 음식</h1>
-    <p>캄보디아의 전통 요리, 스트릿푸드, 쌀국수, 디저트<br>
-    한국에서 캄보디아 음식을 소개할 수 있는 푸드케이터링 및 캄보디아 음식이 필요한 곳 어디에서나 함께 합니다.</p>
+  <section id="food">
+    <h2>캄보디아 음식</h2>
+    <p>전통 요리, 스트릿푸드, 디저트. 한국에서 즐길 수 있는 케이터링도 진행합니다.</p>
   </section>
 
   <section id="essay">
-    <h1>캄보디아 요리에세이</h1>
-    <p>『항바이』 – 캄보디아에서 경험한 음식과 추억을 기록한 책 (출간 준비중)</p>
+    <h2>항바이</h2>
+    <p>캄보디아에서 경험한 음식과 추억을 기록한 요리 에세이(출간 준비 중).</p>
+  </section>
+
+  <section id="about">
+    <h2>소개</h2>
+    <p>크메르어 통번역/강의와 캄보디아 음식 케이터링으로 현지의 맛과 문화를 소개합니다.</p>
   </section>
 
   <section id="contact">
-    <h1>문의</h1>
+    <h2>문의</h2>
     <p>📧 이메일: ssreykmav@email.com<br>
-       📱 카카오톡: kong2mo<br>
-       💬 문의는 언제든 환영합니다.</p>
+       📱 카카오톡: kong2mo</p>
   </section>
 
   <footer>
