@@ -20,13 +20,22 @@
       color:var(--ink); background:var(--bg);
     }
 
-    /* 왼쪽 상단 고정 제목 */
-.header-left {
-  position:fixed;
-  top:20px;
-  left:40px;   /* 갤러리 padding-left(40px)과 동일하게 */
-  text-align:left;
-}
+    /* 헤더 전체 */
+    .header {
+      position:fixed;
+      top:0; left:0; right:0;
+      height:140px;              /* 헤더 높이 */
+      background:#fff;
+      z-index:1000;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:30px 40px;
+      box-sizing:border-box;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* 제목 + 소제목 */
     .header-left h1 {
       font-size:32px;
       font-weight:700;
@@ -34,28 +43,23 @@
       color:#222;
     }
     .header-left .subtitle {
-      font-size:32px;   /* 제목과 같은 크기 */
-      font-weight:600;  /* 약간 덜 두껍게 */
+      font-size:28px;   /* 제목과 거의 같은 크기 */
+      font-weight:600;
       margin-top:6px;
       color:#444;
       font-family:'Hanuman','Noto Sans KR',sans-serif;
     }
 
     /* 햄버거 메뉴 */
-    .menu {
-      position:fixed;
-      top:20px; right:20px;
-      z-index:200;
-    }
     .menu-button {
-  font-size:56px;  /* 두 배 크기 */
-  cursor:pointer;
-  user-select:none;
-}
+      font-size:56px;   /* 크게 */
+      cursor:pointer;
+      user-select:none;
+    }
     .menu-content {
       display:none;
       position:absolute;
-      top:40px; right:0;
+      top:140px; right:40px; /* 헤더 바로 밑에서 열림 */
       background:#fff;
       border:1px solid #ddd;
       box-shadow:0 4px 12px rgba(0,0,0,0.15);
@@ -79,7 +83,7 @@
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap:16px;
-      padding:140px 40px; /* 위쪽 여백 늘리기 */
+      padding:160px 40px 40px; /* 헤더 높이만큼 아래로 밀림 */
     }
     .card {
       display:block;
@@ -105,45 +109,27 @@
       background:#f4f4f4;
       margin-top:72px;
     }
-
-    /* (옵션) 디버그용 가이드라인 */
-    .gallery.debug {
-      background: repeating-linear-gradient(
-        to right,
-        rgba(0,0,0,0.05) 0,
-        rgba(0,0,0,0.05) 1px,
-        transparent 1px,
-        transparent calc(100% / 12)
-      ),
-      repeating-linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.05) 0,
-        rgba(0,0,0,0.05) 1px,
-        transparent 1px,
-        transparent 200px
-      );
-    }
   </style>
 </head>
 <body>
-  <!-- 왼쪽 상단 제목 -->
-  <div class="header-left">
-    <h1>PEACEFULL CAMBODIA</h1>
-    <div class="subtitle">កម្ពុជាសន្តិភាព</div>
-  </div>
-
-  <!-- 오른쪽 상단 햄버거 메뉴 -->
-  <div class="menu">
-    <div class="menu-button">☰</div>
-    <div class="menu-content">
-      <a href="about.html">About</a>
-      <a href="language.html">Language</a>
-      <a href="trip.html">Trip</a>
-      <a href="food.html">Food</a>
-      <a href="essay.html">Essay</a>
-      <a href="contact.html">Contact</a>
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="header-left">
+      <h1>PEACEFULL CAMBODIA</h1>
+      <div class="subtitle">កម្ពុជាសន្តិភាព</div>
     </div>
-  </div>
+    <div class="menu">
+      <div class="menu-button">☰</div>
+      <div class="menu-content">
+        <a href="about.html">About</a>
+        <a href="language.html">Language</a>
+        <a href="trip.html">Trip</a>
+        <a href="food.html">Food</a>
+        <a href="essay.html">Essay</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
 
   <!-- 사진 갤러리 -->
   <section class="gallery">
@@ -157,31 +143,31 @@
     <a class="card tall" href="language.html" 
        style="background-image:url('images/language.jpg');
               grid-column: 9 / span 4;
-              grid-row: 2 / span 3;"></a>
+              grid-row: 2 / span 2;"></a>
 
     <!-- 3번 Trip -->
     <a class="card wide" href="trip.html" 
        style="background-image:url('images/trip.jpg');
-              grid-column: 5 / span 6;
+              grid-column: 6 / span 6;
               grid-row: 1 / span 1;"></a>
 
     <!-- 4번 About -->
     <a class="card tall" href="about.html" 
        style="background-image:url('images/about.jpg');
-              grid-column: 3 / span 7;
-              grid-row: 2 / span 3;"></a>
+              grid-column: 1 / span 4;
+              grid-row: 2 / span 2;"></a>
 
     <!-- 5번 Food -->
     <a class="card" href="food.html" 
        style="background-image:url('images/food.jpg');
-              grid-column: 2 / span 7;
-              grid-row: 3 / span 4;"></a>
+              grid-column: 4 / span 7;
+              grid-row: 4 / span 3;"></a>
 
     <!-- 6번 Contact -->
     <a class="card tall" href="contact.html" 
        style="background-image:url('images/contact.jpg');
               grid-column: 9 / span 4;
-              grid-row: 3 / span 4;"></a>
+              grid-row: 4 / span 2;"></a>
   </section>
 
   <footer>
@@ -193,7 +179,6 @@
     document.addEventListener("DOMContentLoaded", function(){
       const menu = document.querySelector(".menu");
       const button = document.querySelector(".menu-button");
-
       button.addEventListener("click", function(){
         menu.classList.toggle("open");
       });
