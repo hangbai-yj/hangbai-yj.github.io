@@ -7,20 +7,22 @@
   <title>PEACEFULL CAMBODIA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&family=Hanuman:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root{
+    :root {
       --ink:#1f2937;
       --bg:#ffffff;
       --muted:#6b7280;
     }
-    *{ box-sizing:border-box; }
-    body{
-      margin:0; font-family:'Noto Sans KR', system-ui, sans-serif;
-      color:var(--ink); background:var(--bg);
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      font-family:'Noto Sans KR', system-ui, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
     }
 
-    /* 헤더 전체 */
+    /* 헤더 */
     .header {
       position:fixed;
       top:0; left:0; right:0;
@@ -31,11 +33,8 @@
       justify-content:space-between;
       align-items:center;
       padding:30px 40px;
-      box-sizing:border-box;
       box-shadow:0 2px 6px rgba(0,0,0,0.1);
     }
-
-    /* 제목 + 소제목 */
     .header-left h1 {
       font-size:32px;
       font-weight:700;
@@ -78,20 +77,67 @@
       display:block;
     }
 
-    /* 사진 갤러리 */
+    /* 갤러리 */
     .gallery {
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap:16px;
-      padding:160px 40px 40px; /* 헤더 높이만큼 아래로 밀림 */
+      padding:160px 40px 40px;
     }
+
     .card {
+      position: relative;
       display:block;
       background:#ddd center/cover no-repeat;
       border-radius:0;
+      overflow:hidden;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.02);
     }
     .card.tall { aspect-ratio: 3 / 4; }
     .card.wide { aspect-ratio: 16 / 9; }
+
+    /* hover 효과 (페이드로 텍스트 등장) */
+    .card::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0);
+      transition: background 0.4s ease;
+    }
+    .card:hover::before {
+      background:rgba(0,0,0,0.45);
+    }
+
+    .card .label {
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      text-align:center;
+      opacity:0;
+      transition:opacity 0.5s ease;
+    }
+    .card:hover .label {
+      opacity:1;
+    }
+
+    .label .title-en {
+      font-size:24px;
+      font-weight:700;
+      letter-spacing:1px;
+    }
+    .label .title-kh {
+      font-family:'Hanuman','Noto Sans KR',sans-serif;
+      font-size:18px;
+      font-weight:500;
+      margin-top:6px;
+    }
 
     /* 반응형 */
     @media(max-width:960px){
@@ -99,10 +145,10 @@
     }
     @media(max-width:640px){
       .gallery { grid-template-columns: repeat(1, 1fr); }
-      .card{ aspect-ratio:16/10; }
+      .card { aspect-ratio:16/10; }
     }
 
-    footer{
+    footer {
       text-align:center;
       padding:28px 16px;
       color:#666;
@@ -131,50 +177,80 @@
     </div>
   </header>
 
-  <!-- 사진 갤러리 -->
+  <!-- 갤러리 -->
   <section class="gallery">
     <!-- About -->
-    <a class="card tall" href="about.html" 
+    <a class="card tall" href="about.html"
        style="background-image:url('images/about.jpg');
               grid-column: 1 / span 4;
-              grid-row: 1 / span 3;"></a>
+              grid-row: 1 / span 3;">
+      <div class="label">
+        <div class="title-en">ABOUT</div>
+        <div class="title-kh">ណែនាំ</div>
+      </div>
+    </a>
 
     <!-- Khmer Lab -->
-<a class="card tall" href="khmer-lab.html" 
-   style="background-image:url('images/khmer-lab.jpg');
-          grid-column: 5 / span 4;
-          grid-row: 1 / span 3;"></a>
+    <a class="card tall" href="khmer-lab.html"
+       style="background-image:url('images/khmer-lab.jpg');
+              grid-column: 5 / span 4;
+              grid-row: 1 / span 3;">
+      <div class="label">
+        <div class="title-en">KHMER LAB</div>
+        <div class="title-kh">ភាសាខ្មែរ</div>
+      </div>
+    </a>
 
     <!-- Collection -->
-    <a class="card wide" href="collection.html" 
+    <a class="card wide" href="collection.html"
        style="background-image:url('images/collection.jpg');
               grid-column: 9 / span 4;
-              grid-row: 1 / span 3;"></a>
+              grid-row: 1 / span 3;">
+      <div class="label">
+        <div class="title-en">COLLECTION</div>
+        <div class="title-kh">បណ្ណសារផ្ទាល់ខ្លួន</div>
+      </div>
+    </a>
 
     <!-- Kitchen -->
-    <a class="card tall" href="kitchen.html" 
+    <a class="card tall" href="kitchen.html"
        style="background-image:url('images/kitchen.jpg');
               grid-column: 1 / span 4;
-              grid-row: 4 / span 3;"></a>
+              grid-row: 4 / span 3;">
+      <div class="label">
+        <div class="title-en">KITCHEN</div>
+        <div class="title-kh">ម្ហូបខ្មែរ</div>
+      </div>
+    </a>
 
     <!-- Journey -->
-    <a class="card" href="journey.html" 
+    <a class="card" href="journey.html"
        style="background-image:url('images/journey.jpg');
               grid-column: 5 / span 4;
-              grid-row: 4 / span 3;"></a>
+              grid-row: 4 / span 3;">
+      <div class="label">
+        <div class="title-en">JOURNEY</div>
+        <div class="title-kh">សៀវភៅ</div>
+      </div>
+    </a>
 
     <!-- Contact -->
-    <a class="card tall" href="contact.html" 
+    <a class="card tall" href="contact.html"
        style="background-image:url('images/contact.jpg');
               grid-column: 9 / span 4;
-              grid-row: 4 / span 3;"></a>
+              grid-row: 4 / span 3;">
+      <div class="label">
+        <div class="title-en">CONTACT</div>
+        <div class="title-kh">ទំនាក់ទំនង</div>
+      </div>
+    </a>
   </section>
 
   <footer>
     © 2025 Kim Yeo-jin | Made with GitHub Pages
   </footer>
 
-  <!-- 햄버거 메뉴 JS -->
+  <!-- 햄버거 메뉴 -->
   <script>
     document.addEventListener("DOMContentLoaded", function(){
       const menu = document.querySelector(".menu");
